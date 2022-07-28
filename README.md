@@ -8,6 +8,6 @@ To reproduce results:
 2. download data (TODO)
 3. run these notebooks in order: 
     1. clean_data.ipynb
-    2. plot_pca.ipynb
+    2. train_models.ipynb
     3. LOSO_logit_predictions.ipynb
     
