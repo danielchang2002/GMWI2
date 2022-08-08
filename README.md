@@ -9,5 +9,6 @@ To reproduce results:
 3. run these notebooks in order: 
     1. clean_data.ipynb
     2. train_models.ipynb
-    3. LOSO_logit_predictions.ipynb
+    3. plot_coefficients.ipynb
+    4. LOSO_logit_predictions.ipynb
     
