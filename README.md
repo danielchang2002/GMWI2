@@ -11,7 +11,7 @@ To reproduce results:
     2. train_models.ipynb
     3. plot_coefficients.ipynb
     4. plot_violin.ipynb
-    5. LOSO_logit_predictions.ipynb
+    5. ISV_predictions.ipynb
     6. plot_performance_per_study.ipynb
     7. plot_performance_per_phenotype-study_combination.ipynb
     8. plot_performance_per_singular_case_vs_control.ipynb
