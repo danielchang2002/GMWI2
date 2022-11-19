@@ -10,6 +10,7 @@ def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show
     """
     fig, axs = plt.subplots(ncols=len(indices), figsize=(10 * len(indices), 10), dpi=200)
     for index, ax in zip(indices, axs):
+        # plot each subject's longitudinal line
         subjects = np.unique(meta.index)
         for subject in subjects:
             df = meta.loc[[subject]].copy()
@@ -18,6 +19,7 @@ def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show
         ax.set_ylabel(index, fontsize=18)
         ax.set_xlabel("Time point", fontsize=18)
 
+        # compute significance from baseline for each timepoint
         for i, time in enumerate(timepoints_sorted):
             data = meta[meta["timepoint"] == time][index]
             sc = ax.scatter(np.ones(data.shape[0]) * i, data)
