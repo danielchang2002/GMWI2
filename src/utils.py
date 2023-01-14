@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import os
 import config
 
-def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show_tau=False):
+def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show_tau=False, alternative="two-sided"):
     """
     meta is a df that has columns: ["timepoint", "timepoint_plot", index]
     """
@@ -50,7 +50,7 @@ def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show
                 wilcoxon_p = 1
                 tau_p = 1
             else:
-                stat = wilcoxon(baseline_df_curr[index], timepoint_df[index])
+                stat = wilcoxon(baseline_df_curr[index], timepoint_df[index], alternative=alternative)
                 wilcoxon_p = stat.pvalue
                 stat = kendalltau(baseline_df_curr[index], timepoint_df[index])
                 tau, tau_p = stat
