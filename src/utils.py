@@ -1,5 +1,7 @@
 import numpy as np
 from scipy.stats import wilcoxon, kendalltau
+from sklearn.metrics import confusion_matrix
+import pandas as pd
 import matplotlib.pyplot as plt
 import os
 import config
@@ -83,3 +85,16 @@ def get_diversity(meta, X):
     meta["Simpson Diversity"] = np.sum((X_species ** 2).values, axis=1)
     return meta
 
+def confusion(logit, y, cutoff):
+    idx = (abs(logit) >= cutoff).values
+    y_curr = y[idx]
+    logit_curr = logit[idx]
+    mat = confusion_matrix(y_curr, logit_curr > 0)
+    tn, fp, fn, tp = mat.ravel()
+    df = pd.DataFrame(np.array([
+            [fp, tn, tn / (tn + fp)], 
+            [tp, fn, tp / (tp + fn)]
+        ]), 
+        columns=["Predicted Healthy", "Predicted Nonhealthy", "Accuracy"], 
+        index=["Actual Nonhealthy", "Actual healthy"])
+    return df
