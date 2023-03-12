@@ -62,8 +62,9 @@ def plot_longitudinal(meta, indices, timepoints_sorted, study, stars=False, show
             if stars:
                 text = "****" if wilcoxon_p <= 0.0001 else "***" if wilcoxon_p <= 0.001 else "**" if wilcoxon_p <= 0.01 else "*" if wilcoxon_p <= 0.05 else "n.s."
             else:
-                text = "$P = " + '%.2g' % wilcoxon_p + "$" if wilcoxon_p < 0.05 else "n.s."
-            ax.text(x, y, text, ha="center", fontsize=14)
+#                 text = "$P = " + '%.2g' % wilcoxon_p + "$" if wilcoxon_p < 0.05 else "n.s."
+                text = "$P = " + '%.2g' % wilcoxon_p + "$"
+            ax.text(x, y, text, ha="center", fontsize=10)
             
             if show_tau and tau_p < 0.05:
                 ax.text(x, y2, r"$\tau$ = " + '%.2g' % tau, ha="center", fontsize=14)
