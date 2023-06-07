@@ -62,6 +62,8 @@ def main():
         "-o", "--output", required=True, help="prefix to designate output file names", type=str
     )
 
+    parser.add_argument("-v", '--version', action='version', version=f"GMWI2 version {__version__}")
+
     if len(sys.argv) == 1:
         parser.print_help()
         return
@@ -80,6 +82,7 @@ def main():
     
     up_to_date = prerun.check_dependencies()
     if not up_to_date:
+        print("GMWI2 aborted", u"\U0001F4A9")
         return
         
     pipeline.run(args)
