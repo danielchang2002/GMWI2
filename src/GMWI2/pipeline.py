@@ -70,8 +70,6 @@ def run(args):
   spinner = Halo(text='Installing MetaPhlAn database (this may take a while)', spinner=spin)
   spinner.start()
 
-  sleep(5)
-
   command = [
     "metaphlan",
     "--install",
