@@ -51,7 +51,6 @@ def run(args):
       correct = False
 
   if not correct or not correct_version:
-    # spinner.stop_and_persist(symbol=fail)
     spinner.fail()
     if correct:
           printw(output.split("\n")[0])
@@ -62,7 +61,6 @@ def run(args):
     printr("GMWI2 aborted " + poop)
     return
   else:
-    #  spinner.stop_and_persist(symbol=success)
     spinner.succeed()
   # -----------------------check metaphlan-------------------------------------
 
@@ -81,13 +79,11 @@ def run(args):
   stderr = proc.stderr.read().decode("utf-8") 
 
   if "MD5 checksums do not correspond!" in stderr:
-    # spinner.stop_and_persist(symbol=fail)
     spinner.fail()
     printw(stderr)
     printr("GMWI2 aborted " + poop)
     return
   else:
-    # spinner.stop_and_persist(symbol=success)
     spinner.succeed()
   # -----------------------install database -----------------------------------
 
@@ -101,7 +97,6 @@ def run(args):
   command = [
     "metaphlan",
     str(args.input),
-    # "bowtie2out.bowtie2.bz2",
     "--index", 
     "mpa_v30_CHOCOPhlAn_201901",
     "--bowtie2out",
@@ -110,8 +105,6 @@ def run(args):
     str(args.num_threads),
     "--input_type",
     "fastq",
-    # "--input_type",
-    # "bowtie2out",
     "-o",
     args.output + "_metaphlan.txt",
     "--add_viruses",
@@ -121,10 +114,8 @@ def run(args):
   stderr = proc.stderr.read().decode("utf-8") 
 
   if "An additional column listing the merged species is added to the MetaPhlAn output." in stderr:
-    # spinner.stop_and_persist(symbol=success)
     spinner.succeed()
   else:
-    # spinner.stop_and_persist(symbol=fail)
     spinner.fail()
     printw(stderr)
     printr("GMWI2 aborted " + poop)
@@ -145,13 +136,11 @@ def run(args):
     gmwi2_error = traceback.format_exc()
 
   if gmwi2_error:
-    # spinner.stop_and_persist(symbol=fail)
     spinner.fail()
     printw(gmwi2_error)
     printr("GMWI2 aborted " + poop)
     return
   else:
-    # spinner.stop_and_persist(symbol=success)
     spinner.succeed()
   # -----------------------compute gmwi2-----------------------------------
 

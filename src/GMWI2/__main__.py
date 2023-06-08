@@ -2,10 +2,8 @@ import os
 import sys
 from . import utils
 import argparse
-from . import prerun
 from . import pipeline
 import argparse
-import subprocess
 from argparse import RawTextHelpFormatter
 
 __author__ = "Daniel Chang, Vinod Gupta, Jaeyun Sung"
@@ -48,7 +46,8 @@ def main():
         "└── output_prefix_metaphlan.txt\n\n"
         "The two output files are: \n"
         "(i) output_prefix_GMWI2.txt: GMWI2 score\n"
-        "(ii) output_prefix_metaphlan.txt: MetaPhlAn3 taxonomic profiling output",
+        "(ii) output_prefix_GMWI2_taxa.txt: A list of the taxa present in the sample used to compute GMWI2\n"
+        "(iii) output_prefix_metaphlan.txt: Raw MetaPhlAn3 taxonomic profiling output",
         formatter_class=RawTextHelpFormatter,
     )
     requiredNamed = parser.add_argument_group("required named arguments")
@@ -77,7 +76,7 @@ def main():
         print("input file(s) do not exist")
         return
 
-    utils.print_logo()
+    print(utils.logo())
     print()
     
     pipeline.run(args)
