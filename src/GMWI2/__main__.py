@@ -80,11 +80,6 @@ def main():
     utils.print_logo()
     print()
     
-    up_to_date = prerun.check_dependencies()
-    if not up_to_date:
-        print("GMWI2 aborted", u"\U0001F4A9")
-        return
-        
     pipeline.run(args)
 
 if __name__ == "__main__":

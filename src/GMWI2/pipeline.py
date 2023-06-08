@@ -6,72 +6,130 @@ from joblib import load
 import numpy as np
 from time import sleep
 import traceback
+from halo import Halo
+
+success = u"\u2705"
+fail = u"\u274C"
+poop = u"\U0001F4A9"
+spin = "growVertical"
+party1 = u"\U0001F973"
+party2 = u"\U0001F389"
+
+class bcolors:
+    HEADER = "\033[95m"
+    OKBLUE = "\033[94m"
+    OKCYAN = "\033[96m"
+    OKGREEN = "\033[92m"
+    WARNING = "\033[93m"
+    FAIL = "\033[91m"
+    ENDC = "\033[0m"
+    BOLD = "\033[1m"
+    UNDERLINE = "\033[4m"
+
+def printw(s):
+   print(bcolors.WARNING + s + bcolors.ENDC)
+
+def printg(s):
+   print(bcolors.BOLD + bcolors.OKGREEN + s + bcolors.ENDC)
+   
+def printr(s):
+   print(bcolors.BOLD + bcolors.FAIL + s + bcolors.ENDC)
 
 def run(args):
+  # -----------------------check metaphlan-------------------------------------
+  spinner = Halo(text="Checking for MetaPhlAn v3.0.13 on path", spinner=spin)
+  spinner.start()
 
-  # -----------------------install database -----------------------------------
-  print("Installing MetaPhlAn database (this may take a while): ", end="")
+  try:
+      proc = subprocess.Popen(
+          ["metaphlan", "--version"], stdout=subprocess.PIPE, stderr=subprocess.PIPE
+      )
+      output = proc.stdout.read().decode("ASCII")
+      correct = "MetaPhlAn" in output
+      correct_version = "3.0.13" in output
+  except:
+      correct = False
 
-  with utils.Spinner():
-    command = [
-      "metaphlan",
-      "--install",
-      "--index", 
-      "mpa_v30_CHOCOPhlAn_201901",
-    ]
-    proc = subprocess.Popen(command, stderr=subprocess.PIPE)
-
-    stderr = proc.stderr.read().decode("utf-8") 
-
-  if "MD5 checksums do not correspond!" in stderr:
-    # fail
-    print(u"\u274C")
-
-    print(stderr)
-
-    print("GMWI2 aborted", u"\U0001F4A9")
+  if not correct or not correct_version:
+    # spinner.stop_and_persist(symbol=fail)
+    spinner.fail()
+    if correct:
+          printw(output.split("\n")[0])
+          printw("Incorrect version of MetaPhlAn")
+    else:
+          printw("MetaPhlAn not found on path")
+    printw('Please run: "mamba install -c bioconda metaphlan=3.0.13"')
+    printr("GMWI2 aborted " + poop)
     return
   else:
-    # success
-    print(u"\u2705")
+    #  spinner.stop_and_persist(symbol=success)
+    spinner.succeed()
+  # -----------------------check metaphlan-------------------------------------
+
+  # -----------------------install database -----------------------------------
+  spinner = Halo(text='Installing MetaPhlAn database (this may take a while)', spinner=spin)
+  spinner.start()
+
+  sleep(5)
+
+  command = [
+    "metaphlan",
+    "--install",
+    "--index", 
+    "mpa_v30_CHOCOPhlAn_201901",
+  ]
+  proc = subprocess.Popen(command, stderr=subprocess.PIPE)
+
+  stderr = proc.stderr.read().decode("utf-8") 
+
+  if "MD5 checksums do not correspond!" in stderr:
+    # spinner.stop_and_persist(symbol=fail)
+    spinner.fail()
+    printw(stderr)
+    printr("GMWI2 aborted " + poop)
+    return
+  else:
+    # spinner.stop_and_persist(symbol=success)
+    spinner.succeed()
   # -----------------------install database -----------------------------------
 
 
 
 
   # -----------------------run metaphlan-----------------------------------
-  print("Profiling metagenome: ", end="")
+  spinner = Halo(text='Profiling metagenome', spinner=spin)
+  spinner.start()
 
-  with utils.Spinner():
-    command = [
-      "metaphlan",
-      str(args.input),
-      # "bowtie2out.bowtie2.bz2",
-      "--index", 
-      "mpa_v30_CHOCOPhlAn_201901",
-      "--bowtie2out",
-      "bowtie2out.bowtie2.bz2",
-      "--nproc",
-      str(args.num_threads),
-      "--input_type",
-      "fastq",
-      # "--input_type",
-      # "bowtie2out",
-      "-o",
-      args.output + "_metaphlan.txt",
-      "--add_viruses",
-      "--unknown_estimation",
-    ]
-    proc = subprocess.Popen(command, stderr=subprocess.PIPE)
-    stderr = proc.stderr.read().decode("utf-8") 
+  command = [
+    "metaphlan",
+    str(args.input),
+    # "bowtie2out.bowtie2.bz2",
+    "--index", 
+    "mpa_v30_CHOCOPhlAn_201901",
+    "--bowtie2out",
+    "bowtie2out.bowtie2.bz2",
+    "--nproc",
+    str(args.num_threads),
+    "--input_type",
+    "fastq",
+    # "--input_type",
+    # "bowtie2out",
+    "-o",
+    args.output + "_metaphlan.txt",
+    "--add_viruses",
+    "--unknown_estimation",
+  ]
+  proc = subprocess.Popen(command, stderr=subprocess.PIPE)
+  stderr = proc.stderr.read().decode("utf-8") 
 
   if "An additional column listing the merged species is added to the MetaPhlAn output." in stderr:
-    # success
-    print(u"\u2705")
+    # spinner.stop_and_persist(symbol=success)
+    spinner.succeed()
   else:
-    print(u"\u274C")
-    print(stderr)
-    print("GMWI2 aborted", u"\U0001F4A9")
+    # spinner.stop_and_persist(symbol=fail)
+    spinner.fail()
+    printw(stderr)
+    printr("GMWI2 aborted " + poop)
     return
   # -----------------------run metaphlan-----------------------------------
 
@@ -79,29 +137,30 @@ def run(args):
 
 
   # -----------------------compute gmwi2-----------------------------------
-  print("Computing GMWI2: ", end="")
-
   gmwi2_error = None
+  spinner = Halo(text='Computing GMWI2', spinner=spin)
+  spinner.start()
 
-  with utils.Spinner():
-    try:
-      compute_gmwi2(args)
-    except Exception as e:
-      gmwi2_error = traceback.format_exc()
+  try:
+    compute_gmwi2(args)
+  except Exception as e:
+    gmwi2_error = traceback.format_exc()
 
   if gmwi2_error:
-    print(u"\u274C")
-    print(gmwi2_error)
-    print("GMWI2 aborted", u"\U0001F4A9")
+    # spinner.stop_and_persist(symbol=fail)
+    spinner.fail()
+    printw(gmwi2_error)
+    printr("GMWI2 aborted " + poop)
     return
   else:
-    print(u"\u2705")
+    # spinner.stop_and_persist(symbol=success)
+    spinner.succeed()
   # -----------------------compute gmwi2-----------------------------------
 
   # cleanup
   subprocess.call(["rm", "bowtie2out.bowtie2.bz2"])
 
-  print("GMWI2 great success!", u"\U0001F4A9")
+  printg("GMWI2 great success!", poop + party1 + party2)
 
 def compute_gmwi2(args):
     # load in taxonomic profile
