@@ -11,7 +11,7 @@ from halo import Halo
 success = u"\u2705"
 fail = u"\u274C"
 poop = u"\U0001F4A9"
-spin = "growVertical"
+spin = "line"
 party1 = u"\U0001F973"
 party2 = u"\U0001F389"
 
@@ -160,7 +160,7 @@ def run(args):
   # cleanup
   subprocess.call(["rm", "bowtie2out.bowtie2.bz2"])
 
-  printg("GMWI2 great success!", poop + party1 + party2)
+  printg("GMWI2 great success!" + poop + party1 + party2)
 
 def compute_gmwi2(args):
     # load in taxonomic profile
