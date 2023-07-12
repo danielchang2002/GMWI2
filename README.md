@@ -38,5 +38,61 @@ mamba install -c danielchang2002 -c bioconda -c conda-forge gmwi2
 
 ### Usage
 
-Try downloading and running GMWI2 on an example metagenome.
+Try downloading and running GMWI2 on an [example metagenome](https://github.com/danielchang2002/TaxiBGC_2022/tree/main/example).
 
+
+```bash
+Input: Raw fastq (or fastq.gz) files generated from a stool shotgun metagenome
+Output: The GMWI2 (Gut Microbiome Wellness Index 2) score
+
+usage: gmwi2 [-h] -n NUM_THREADS -i INPUT -o OUTPUT [-v]
+
+* Example usage (single end):
+
+$ ls
+.
+└── metagenome.fastq
+
+$ gmwi2 -i metagenome.fastq -n 8 -o output_prefix
+
+$ ls
+.
+├── metagenome.fastq
+├── output_prefix_GMWI2.txt
+├── output_prefix_GMWI2_taxa.txt
+└── output_prefix_metaphlan.txt
+
+* Example usage (paired end):
+
+$ ls
+.
+├── forward.fastq
+└── reverse.fastq
+
+$ gmwi2 -i forward.fastq,reverse.fastq -n 8 -o output_prefix
+
+$ ls
+.
+├── forward.fastq
+├── reverse.fastq
+├── output_prefix_GMWI2.txt
+├── output_prefix_GMWI2_taxa.txt
+└── output_prefix_metaphlan.txt
+
+The three output files are: 
+(i) output_prefix_GMWI2.txt: GMWI2 score
+(ii) output_prefix_GMWI2_taxa.txt: A list of the taxa present in the sample used to compute GMWI2
+(iii) output_prefix_metaphlan.txt: Raw MetaPhlAn3 taxonomic profiling output
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -v, --version         show program's version number and exit
+
+required named arguments:
+  -n NUM_THREADS, --num_threads NUM_THREADS
+                        number of threads
+  -i INPUT, --input INPUT
+                        metagenome (.fastq) file(s)
+  -o OUTPUT, --output OUTPUT
+                        prefix to designate output file names
+```
