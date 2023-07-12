@@ -1,12 +1,15 @@
 # GMWI2: Gut Microbiome Wellness Index 2
+![poop computer chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg)
+(Image generated via OpenAI DALL·E 2 with prompt: "3D render of GPU chip in the form of a poop emoji, digital art")
 
 ### Description
-GMWI2 (Gut Microbiome Wellness Index 2) for Enhanced Health Status Prediction 
-from Gut Microbiome Taxonomic Signatures
 
-On a metagenome sample, GMWI2 performs two steps:
+GMWI2 (Gut Microbiome Wellness Index 2) is a robust and biologically interpretable predictor of health status based on the gut microbiome.
+
+On a stool metagenome sample, GMWI2 performs three major steps:
 1. Taxonomic profiling using MetaPhlAn3 (v3.0.13)
-2. 
+2. Transformation of taxonomic relative abundances into a binary presence/absence profile
+3. Computation of the GMWI2 score using a Lasso-penalized logistic regression model trained on a meta-dataset of 8,069 health status labeled stool shotgun metagenomes
 
 If you use GMWI2, please cite:
 
