@@ -3,6 +3,7 @@
   <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="400"/>
 
   <br>
+  <br>
 
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
