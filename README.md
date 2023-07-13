@@ -1,7 +1,8 @@
-# GMWI2: Gut Microbiome Wellness Index 2
+# GMWI2
 <div align="center">
   <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="512"/>
 
+  <h2> Gut Microbiome Wellness Index 2 </h2>
 
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
@@ -105,5 +106,7 @@ required named arguments:
   -o OUTPUT, --output OUTPUT
                         prefix to designate output file names
 ```
+
+### Top image
 
 Top image generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2) using the prompt: "3D render of GPU chip in the form of a poop emoji, digital art"
