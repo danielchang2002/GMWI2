@@ -1,8 +1,8 @@
-# GMWI2
+# GMWI2: Gut Microbiome Wellness Index 2
 <div align="center">
-  <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="512"/>
+  <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="400"/>
 
-  <h2> Gut Microbiome Wellness Index 2 </h2>
+  <br>
 
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
   [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
