@@ -1,6 +1,7 @@
 # GMWI2: Gut Microbiome Wellness Index 2
-<!-- ![poop computer chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg) -->
-<img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" align="center" width="512" >
+<p align="center">
+  <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="512"/>
+</p>
 
 (Image generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2): "3D render of GPU chip in the form of a poop emoji, digital art")
 
