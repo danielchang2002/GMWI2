@@ -101,7 +101,7 @@ required named arguments:
                         prefix to designate output file names
 ```
 
-### Top image
+### Poop on a chip?!
 
 The top image was generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2) using the prompt: "3D render of GPU chip in the form of a poop emoji, digital art".
 The image was then widened using the [Runway Infinite Image tool](https://runwayml.com/ai-magic-tools/infinite-image/).
