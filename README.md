@@ -8,7 +8,7 @@
 
 ### Description
 
-GMWI2 (Gut Microbiome Wellness Index 2) is a robust and biologically interpretable predictor of health status based on the gut microbiome.
+GMWI2 (Gut Microbiome Wellness Index 2) is a robust and biologically interpretable predictor of health status based on gut microbiome taxonomic profiles.
 
 On a stool metagenome sample, GMWI2 performs three major steps:
 1. Taxonomic profiling using MetaPhlAn3 (v3.0.13)
