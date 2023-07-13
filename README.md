@@ -1,5 +1,7 @@
 # GMWI2: Gut Microbiome Wellness Index 2
-![poop computer chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg)
+<!-- ![poop computer chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg) -->
+<img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" align="center" width="512" >
+
 (Image generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2): "3D render of GPU chip in the form of a poop emoji, digital art")
 
 ### Description
@@ -38,7 +40,7 @@ mamba install -c danielchang2002 -c bioconda -c conda-forge gmwi2
 
 ### Usage
 
-Try downloading and running GMWI2 on an [example metagenome](https://github.com/danielchang2002/TaxiBGC_2022/tree/main/example).
+Try downloading and running GMWI2 on an [example metagenome](https://github.com/danielchang2002/GMWI2/tree/main/example).
 
 
 ```bash
