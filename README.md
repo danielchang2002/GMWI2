@@ -1,5 +1,9 @@
-# GMWI2: Gut Microbiome Wellness Index 2
+
+
 <div align="center">
+
+  # GMWI2: Gut Microbiome Wellness Index 2
+
   <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="400"/>
 
   <br>
