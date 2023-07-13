@@ -1,21 +1,10 @@
+# GMWI2: Gut Microbiome Wellness Index 2
+![poop on a chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.png)
 
-
-<div align="center">
-
-  # GMWI2: Gut Microbiome Wellness Index 2
-
-  <img src="https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.jpeg" width="400"/>
-
-  <br>
-  <br>
-
-  [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
-  [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
-  [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/license.svg)](https://anaconda.org/danielchang2002/taxibgc)
-  [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/downloads.svg)](https://anaconda.org/danielchang2002/taxibgc)
-
-</div>
-
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/license.svg)](https://anaconda.org/danielchang2002/taxibgc)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/downloads.svg)](https://anaconda.org/danielchang2002/taxibgc)
 
 ### Description
 
@@ -114,4 +103,5 @@ required named arguments:
 
 ### Top image
 
-Top image generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2) using the prompt: "3D render of GPU chip in the form of a poop emoji, digital art"
+The top image was generated via [OpenAI DALL·E 2](https://openai.com/dall-e-2) using the prompt: "3D render of GPU chip in the form of a poop emoji, digital art".
+The image was then widened using the [Runway Infinite Image tool](https://runwayml.com/ai-magic-tools/infinite-image/).
