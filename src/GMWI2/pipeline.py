@@ -65,7 +65,7 @@ def run(args):
   # -----------------------check metaphlan-------------------------------------
 
   # -----------------------install database -----------------------------------
-  spinner = Halo(text='Installing MetaPhlAn database (this may take a while)', spinner=spin)
+  spinner = Halo(text="Installing MetaPhlAn marker database (mpa_v30_CHOCOPhlAn_201901)", spinner=spin)
   spinner.start()
 
   command = [
@@ -174,9 +174,8 @@ def compute_gmwi2(args):
     with open(args.output + "_GMWI2.txt", "w") as f:
       f.write(f"{score}\n")
     
-    # Record relative abundances of taxa that are present and have nonzero coef in model
+    # Record relative taxa that are present and have nonzero coef in model
     coefficient_df = pd.DataFrame(gmwi2.coef_, columns=gmwi2.feature_names_in_, index=["coefficient"]).T
-    coefficient_df["relative_abundance"] = df.values.flatten()
     coefficient_df = coefficient_df[(coefficient_df["coefficient"] != 0) & (coefficient_df["relative_abundance"] > presence_cutoff)]
     coefficient_df.index.name = "taxa_name"
 

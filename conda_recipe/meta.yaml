@@ -1,5 +1,5 @@
 {% set name = "gmwi2" %}
-{% set version = "1.0" %}
+{% set version = "1.2" %}
 
 package:
   name: "{{ name }}"
@@ -16,7 +16,8 @@ requirements:
     - python
     - metaphlan=3.0.13
     - pandas
-    - sklearn
+    - scikit-learn=1.2.2
+    - halo
 
 test:
 
@@ -24,4 +25,4 @@ about:
   home: https://github.com/danielchang2002/GMWI2
   license: MIT
   license_family: MIT
-  summary: Highly Accurate Health Status Prediction Using Taxonomic Gut Microbiome Profiling
+  summary: Enhanced Health Status Prediction from Gut Microbiome Taxonomic Profiles

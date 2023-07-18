@@ -1,17 +1,17 @@
 # GMWI2: Gut Microbiome Wellness Index 2
 ![poop on a chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.png)
 
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/version.svg)](https://anaconda.org/danielchang2002/taxibgc)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/platforms.svg)](https://anaconda.org/danielchang2002/taxibgc)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/license.svg)](https://anaconda.org/danielchang2002/taxibgc)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/taxibgc/badges/downloads.svg)](https://anaconda.org/danielchang2002/taxibgc)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/license.svg)](https://anaconda.org/danielchang2002/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmwi2)
 
 ### Description
 
 GMWI2 (Gut Microbiome Wellness Index 2) is a robust and biologically interpretable predictor of health status based on gut microbiome taxonomic profiles.
 
-On a stool metagenome sample, GMWI2 performs three major steps:
-1. Taxonomic profiling using MetaPhlAn3 (v3.0.13)
+On a stool metagenome sample, this command-line tool performs three major steps:
+1. Taxonomic profiling using MetaPhlAn3 (v3.0.13) with the mpa_v30_CHOCOPhlAn_201901 marker database
 2. Transformation of taxonomic relative abundances into a binary presence/absence profile
 3. Computation of the GMWI2 score using a Lasso-penalized logistic regression model trained on a meta-dataset of 8,069 health status labeled stool shotgun metagenomes
 
@@ -22,7 +22,7 @@ TODO
 ### Installation
 
 To avoid dependency conflicts, please create an isolated conda environment and 
-install GMWI2. Installation via conda/mamba automatically installs GMWI2 and 
+install the GMWI2 package. Installation via conda/mamba automatically installs GMWI2 and 
 its dependencies (MetaPhlAn3).
 
 1. Create new conda environment and install mamba
@@ -42,7 +42,7 @@ mamba install -c danielchang2002 -c bioconda -c conda-forge gmwi2
 
 ### Usage
 
-Try downloading and running GMWI2 on an [example metagenome](https://github.com/danielchang2002/GMWI2/tree/main/example).
+Try downloading and running GMWI2 on an [example stool metagenome](https://github.com/danielchang2002/GMWI2/tree/main/example).
 
 
 ```bash
