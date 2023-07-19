@@ -1,10 +1,10 @@
 # GMWI2: Gut Microbiome Wellness Index 2
 ![poop on a chip](https://raw.githubusercontent.com/danielchang2002/GMWI2/main/poop.png)
 
-<!-- [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmwi2)
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmwi2)
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/license.svg)](https://anaconda.org/danielchang2002/gmwi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmwi2) -->
+[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmwi2)
 
 ### Description
 
