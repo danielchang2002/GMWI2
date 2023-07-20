@@ -1,10 +1,15 @@
 # Reproducing the GMWI2 analysis
 
 This directory contains processed datasets and code for generating figures and analyses for the GMWI2 manuscript. 
+<!-- 
+<div align="center">
+  <img src="../images/Fig.1_v8.png" width="300"/> <img src="../images/Fig.2_v7.png" width="317"/> 
+</div> -->
 
-| Figure 1               | Figure 2               |
-| ---------------------- | ---------------------- |
-| ![fig1](../images/Fig.1_v8.png) | ![fig2](../images/Fig.2_v7.png) |
+<p float="left">
+  <img src="../images/Fig.1_v8.png" width="50%" />
+  <img src="../images/Fig.2_v7.png" width="50%" />
+</p>
 
 ### Reproducing figures and analyses
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://google.com)
