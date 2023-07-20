@@ -5,6 +5,9 @@
 *.fastq.gz
 *.sra
 
+# extraneous notebooks
+manuscript/set_up_longitudinal.ipynb
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

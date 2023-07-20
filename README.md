@@ -1,5 +1,5 @@
 # GMWI2: Gut Microbiome Wellness Index 2
-![poop on a chip](./images/poop.png)
+![poop on a chip](./poop.png)
 
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmwi2)
 [![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmwi2)
@@ -27,7 +27,7 @@ its dependencies (MetaPhlAn3).
 
 1. Create new conda environment and install mamba
 ```bash
-conda create --name gmwi2_env mamba python=3.8
+conda create --name gmwi2_env -c conda-forge mamba python=3.8
 ```
 
 2. Activate environment

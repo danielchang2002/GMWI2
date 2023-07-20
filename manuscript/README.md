@@ -1,14 +1,9 @@
 # Reproducing the GMWI2 manuscript
 
-<p float="left">
-  <img src="../images/Fig.1_v8.png" width="47.25%" />
-  <img src="../images/Fig.2_v7.png" width="50%" />
-</p>
-
 This directory contains processed datasets and code for generating figures and analyses for the GMWI2 manuscript. 
 
 ### Reproducing figures and analyses
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://google.com)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danielchang2002/GMWI2/blob/main/manuscript/GMWI2_manuscript.ipynb)
 
 Please use the colab notebook linked above to reproduce all downstream analyses on the pooled dataset. 
 Alternatively, clone this repository (`git clone https://github.com/danielchang2002/GMWI2.git`) and run [GMWI2_manuscript.ipynb](./GMWI2_manuscript.ipynb) locally.
