@@ -102,7 +102,7 @@ required named arguments:
 ```
 
 ### Reproducing results
-Processed datasets and code notebooks used to generate figures and analyses for the manuscript are available [here](https://github.com/danielchang2002/GMWI2/tree/main/manuscript).
+Processed datasets and code used to generate figures and analyses for the manuscript are available [here](https://github.com/danielchang2002/GMWI2/tree/main/manuscript).
 
 ### Poop on a chip??
 
