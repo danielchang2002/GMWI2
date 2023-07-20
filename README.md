@@ -42,7 +42,7 @@ mamba install -c danielchang2002 -c bioconda -c conda-forge gmwi2
 
 ### Usage
 
-Try downloading and running GMWI2 on an [example stool metagenome](https://github.com/danielchang2002/GMWI2/tree/main/example).
+Try downloading and running GMWI2 on an [example stool metagenome](./example).
 
 
 ```bash
@@ -102,7 +102,7 @@ required named arguments:
 ```
 
 ### Reproducing results
-Processed datasets and code used to generate figures and analyses for the manuscript are available [here](https://github.com/danielchang2002/GMWI2/tree/main/manuscript).
+Processed datasets and code used to generate figures and analyses for the manuscript are available [here](./manuscript).
 
 ### Poop on a chip??
 
