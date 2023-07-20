@@ -6,7 +6,7 @@ This directory contains processed datasets and code for generating figures and a
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://google.com)
 
 Please use the colab notebook linked above to reproduce all downstream analyses on the pooled dataset. 
-Alternatively, clone this repository and run ```GMWI2_manuscript.ipynb``` locally.
+Alternatively, clone this repository and run `GMWI2_manuscript.ipynb` locally.
 
 ### Quality control and taxonomic profiling pipeline
 
