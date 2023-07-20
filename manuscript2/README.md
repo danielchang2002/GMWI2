@@ -7,7 +7,7 @@ This directory contains processed datasets and code for generating figures and a
 </div> -->
 
 <p float="left">
-  <img src="../images/Fig.1_v8.png" width="50%" />
+  <img src="../images/Fig.1_v8.png" width="47.25%" />
   <img src="../images/Fig.2_v7.png" width="50%" />
 </p>
 
