@@ -1,5 +1,5 @@
 #mpa_v30_CHOCOPhlAn_201901
-#/Users/daniel/opt/anaconda3/envs/gmwi2_env/bin/metaphlan SRR1761666_1.fastq,SRR1761666_2.fastq --index mpa_v30_CHOCOPhlAn_201901 --bowtie2out bowtie2out.bowtie2.bz2 --nproc 16 --input_type fastq -o SRR1761666_metaphlan.txt --add_viruses --unknown_estimation
+#/Users/daniel/opt/anaconda3/envs/gmwi2_env_5/bin/metaphlan SRR1761666_1.fastq,SRR1761666_2.fastq --index mpa_v30_CHOCOPhlAn_201901 --bowtie2out bowtie2out.bowtie2.bz2 --nproc 16 --input_type fastq -o SRR1761666_metaphlan.txt --add_viruses --unknown_estimation
 #SampleID	Metaphlan_Analysis
 #clade_name	NCBI_tax_id	relative_abundance	additional_species
 UNKNOWN	-1	61.19317	
