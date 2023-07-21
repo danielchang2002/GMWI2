@@ -176,7 +176,9 @@ def compute_gmwi2(args):
     
     # Record relative taxa that are present and have nonzero coef in model
     coefficient_df = pd.DataFrame(gmwi2.coef_, columns=gmwi2.feature_names_in_, index=["coefficient"]).T
+    coefficient_df["relative_abundance"] = df.values.flatten()
     coefficient_df = coefficient_df[(coefficient_df["coefficient"] != 0) & (coefficient_df["relative_abundance"] > presence_cutoff)]
     coefficient_df.index.name = "taxa_name"
+    coefficient_df = coefficient_df[["coefficient"]]
 
     coefficient_df.to_csv(args.output + "_GMWI2_taxa.txt", sep="\t")
