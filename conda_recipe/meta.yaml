@@ -6,9 +6,9 @@ package:
   version: "{{ version }}"
 
 build:
-  noarch: generic
+  noarch: python
   number: 0
-  script: {{ PYTHON }} setup.py install --single-version-externally-managed --record=record.txt
+  script: {{ PYTHON }} -m pip install . -vv --no-dependencies
 
 source:
   url: https://github.com/danielchang2002/GMWI2/archive/{{version}}.tar.gz
@@ -17,14 +17,20 @@ source:
 requirements:
   host:
     - pip
-    - python
+    - python >=3.7
     - setuptools
   run:
-    - python
+    - python >=3.7
     - metaphlan =3.0.13
     - pandas
     - scikit-learn =1.2.2
     - halo
+    - bbmap =38.93
+    - fastqc =0.11.9
+    - bowtie2 =2.4.4
+    - samtools =0.1.19
+    - bedtools =2.30.0
+    - trimmomatic =0.39
 
 test:
   commands:

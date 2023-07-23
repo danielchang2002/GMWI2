@@ -1,10 +1,10 @@
 # GMWI2: Gut Microbiome Wellness Index 2
 ![poop on a chip](./poop.png)
 
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/version.svg)](https://anaconda.org/danielchang2002/gmwi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/platforms.svg)](https://anaconda.org/danielchang2002/gmwi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/license.svg)](https://anaconda.org/danielchang2002/gmwi2)
-[![Anaconda-Server Badge](https://anaconda.org/danielchang2002/gmwi2/badges/downloads.svg)](https://anaconda.org/danielchang2002/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/version.svg)](https://anaconda.org/bioconda/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/platforms.svg)](https://anaconda.org/bioconda/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/license.svg)](https://anaconda.org/bioconda/gmwi2)
+[![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/downloads.svg)](https://anaconda.org/bioconda/gmwi2)
 
 ### Description
 
@@ -46,27 +46,12 @@ Try downloading and running GMWI2 on an [example stool metagenome](./example).
 
 
 ```bash
-Input: Raw fastq (or fastq.gz) files generated from a stool shotgun metagenome
+Input: Two (forward/reverse) raw fastq (or fastq.gz) files generated from paired-end stool metagenome reads
 Output: The GMWI2 (Gut Microbiome Wellness Index 2) score
 
 usage: gmwi2 [-h] -n NUM_THREADS -i INPUT -o OUTPUT [-v]
 
-* Example usage (single end):
-
-$ ls
-.
-└── metagenome.fastq
-
-$ gmwi2 -i metagenome.fastq -n 8 -o output_prefix
-
-$ ls
-.
-├── metagenome.fastq
-├── output_prefix_GMWI2.txt
-├── output_prefix_GMWI2_taxa.txt
-└── output_prefix_metaphlan.txt
-
-* Example usage (paired end):
+* Example usage:
 
 $ ls
 .
@@ -101,8 +86,12 @@ required named arguments:
                         prefix to designate output file names
 ```
 
-### Reproducing results
-Processed datasets and code used to generate figures and analyses for the manuscript are available [here](./manuscript).
+### Reproducing manuscript results
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danielchang2002/GMWI2/blob/main/manuscript/GMWI2_manuscript.ipynb)
+
+Please use the colab notebook linked above to reproduce all downstream analyses on the pooled dataset. 
+See the [manuscript directory](./manuscript) for more details.
 
 ### Poop on a chip??
 
