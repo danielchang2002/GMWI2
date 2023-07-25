@@ -1,0 +1,6 @@
+a4841a0b52b76812ab5a00b7d390111d  GRCh38_noalt_as.1.bt2
+56c4081853880066a4de5d74e559434c  GRCh38_noalt_as.2.bt2
+b2d325b6836d0e957c349d3557b5a743  GRCh38_noalt_as.3.bt2
+aee1363daba2b49637417b9213281591  GRCh38_noalt_as.4.bt2
+190f2ba81e148b298fb00129f6653a8a  GRCh38_noalt_as.rev.1.bt2
+57080fad22f8ff849639433b20f45ec3  GRCh38_noalt_as.rev.2.bt2

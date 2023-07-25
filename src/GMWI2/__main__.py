@@ -4,10 +4,11 @@ from . import utils
 import argparse
 from . import pipeline
 import argparse
+import subprocess
 from argparse import RawTextHelpFormatter
 
 __author__ = "Daniel Chang, Vinod Gupta, Jaeyun Sung"
-__version__ = "1.4"
+__version__ = "1.5"
 
 def main():
     parser = argparse.ArgumentParser(
@@ -19,27 +20,17 @@ def main():
         "AUTHORS: \n" + __author__ + "\n\n"
         "USAGE: \n"
         "GMWI2 takes as input raw fastq (or fastq.gz) files generated "
-        "from a stool metagenome, "
+        "from a paired-end stool metagenome, "
+        "performs quality control, "
         "estimates microbial abundances, "
         "and using these microbial estimates, "
         "returns as output the GMWI2 score. \n\n"
-        "* Example usage (single end):\n\n"
-        "$ ls\n"
-        ".\n"
-        "└── metagenome.fastq\n\n"
-        "$ gmwi2 -i metagenome.fastq -n 8 -o output_prefix\n\n"
-        "$ ls\n"
-        ".\n"
-        "├── metagenome.fastq\n"
-        "├── output_prefix_GMWI2.txt\n"
-        "├── output_prefix_GMWI2_taxa.txt\n"
-        "└── output_prefix_metaphlan.txt\n\n"
-        "* Example usage (paired end):\n\n"
+        "* Example usage:\n\n"
         "$ ls\n"
         ".\n"
         "├── forward.fastq\n"
         "└── reverse.fastq\n\n"
-        "$ gmwi2 -i forward.fastq,reverse.fastq -n 8 -o output_prefix\n\n"
+        "$ gmwi2 -f forward.fastq -r reverse.fastq -n 8 -o output_prefix\n\n"
         "$ ls\n"
         ".\n"
         "├── forward.fastq\n"
@@ -58,7 +49,10 @@ def main():
         "-n", "--num_threads", required=True, help="number of threads", type=int
     )
     requiredNamed.add_argument(
-        "-i", "--input", required=True, help="metagenome (.fastq) file(s)", type=str
+        "-f", "--forward", required=True, help="forward-read of metagenome (.fastq/.fastq.gz)", type=str
+    )
+    requiredNamed.add_argument(
+        "-r", "--reverse", required=True, help="reverse-read of metagenome (.fastq/.fastq.gz)", type=str
     )
     requiredNamed.add_argument(
         "-o", "--output", required=True, help="prefix to designate output file names", type=str
@@ -71,12 +65,22 @@ def main():
         return
 
     args = parser.parse_args()
-
-    input_files = args.input.split(",")
-
-    for f in input_files:
-      if not os.path.exists(f):
+    forward, reverse = args.forward, args.reverse
+    if not os.path.exists(forward) or not os.path.exists(reverse):
         print("input file(s) do not exist")
+        return
+
+    if not os.path.dirname(args.output) == "" and not os.path.exists(os.path.dirname(args.output)):
+        print("output prefix is invalid")
+
+    # check forward file
+    if not forward.endswith(".fastq") and not forward.endswith(".fastq.gz"):
+        print("invalid input file extensions")
+        return
+
+    # check reverse file
+    if not reverse.endswith(".fastq") and not reverse.endswith(".fastq.gz"):
+        print("invalid input file extensions")
         return
 
     print(utils.logo())

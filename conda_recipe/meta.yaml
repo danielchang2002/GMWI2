@@ -1,5 +1,5 @@
 {% set name = "gmwi2" %}
-{% set version = "1.4" %}
+{% set version = "1.5" %}
 
 package:
   name: "{{ name }}"
@@ -25,17 +25,23 @@ requirements:
     - pandas
     - scikit-learn =1.2.2
     - halo
-    - bbmap =38.93
-    - fastqc =0.11.9
-    - bowtie2 =2.4.4
-    - samtools =0.1.19
-    - bedtools =2.30.0
-    - trimmomatic =0.39
+    - bbmap
+    - fastqc
+    - bowtie2
+    - samtools
+    - bedtools
+    - trimmomatic
 
 test:
   commands:
-    - metaphlan -v
-    - gmwi2 -v
+    - metaphlan --version
+    - gmwi2 --version
+    - repair.sh --version
+    - fastqc --version
+    - bowtie2 --version
+    - samtools --version
+    - bedtools --version
+    - trimmomatic -version
 
 about:
   home: https://github.com/danielchang2002/GMWI2
