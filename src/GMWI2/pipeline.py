@@ -8,6 +8,7 @@ from time import sleep
 import traceback
 from halo import Halo
 import gzip
+import zipfile
 import shutil
 import sys
 
@@ -37,6 +38,12 @@ def printg(s):
    
 def printr(s):
    print(bcolors.BOLD + bcolors.FAIL + s + bcolors.ENDC)
+
+def rm_r(path):
+  if os.path.isdir(path) and not os.path.islink(path):
+      shutil.rmtree(path)
+  elif os.path.exists(path):
+      os.remove(path)
 
 def check_GRCh38():
   database_dir = os.path.join(utils.DEFAULT_DB_FOLDER, "GRCh38_noalt_as")
@@ -156,18 +163,43 @@ def database_installation():
   spinner = Halo(text="Downloading GRCh38/hg38", spinner=spin)
   spinner.start()
 
-  # if not check_GRCh38():
-  #   url = "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip"
-  #   target_dir = os.path.join(utils.DEFAULT_DB_FOLDER)
-  #   proc = subprocess.call(["wget", "-P", target_dir, url], stderr=subprocess.PIPE, stdout=subprocess.PIPE)
-  #   zip_location = os.path.join(target_dir, "GRCh38_noalt_as.zip")
-  #   proc = subprocess.call(
-  #       ["unzip", "-o", zip_location, "-d", os.path.join(target_dir)],
-  #       stdout=subprocess.PIPE
-  #   )
-  #   proc = subprocess.call(
-  #       ["rm", zip_location]
-  #   )
+  if not check_GRCh38():
+    target_dir = os.path.join(utils.DEFAULT_DB_FOLDER)
+    zip_location = os.path.join(target_dir, "GRCh38_noalt_as.zip")
+
+    rm_r(os.path.join(target_dir, "GRCh38_noalt_as"))
+    rm_r(zip_location)
+
+    url = "https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip"
+    proc = subprocess.Popen(f"wget -q -P {target_dir} {url}", shell=True, stderr=subprocess.PIPE)
+
+    stderr = proc.stderr.read().decode("utf-8") 
+
+    proc.communicate()
+    incorrect = proc.returncode != 0
+
+    if incorrect:
+      spinner.fail()
+      printw(stderr)
+      printr("GMWI2 aborted " + poop)
+      sys.exit()
+
+    zip_location = os.path.join(target_dir, "GRCh38_noalt_as.zip")
+
+    error = None
+    try:
+      with zipfile.ZipFile(zip_location, 'r') as zip_ref:
+        zip_ref.extractall(target_dir)
+    except Exception as e:
+       error = traceback.format_exc()
+
+    if error:
+      spinner.fail()
+      printw(error)
+      printr("GMWI2 aborted " + poop)
+      sys.exit()
+
+    rm_r(zip_location)
 
   spinner.succeed()
   print(
@@ -180,8 +212,8 @@ def copy_input(args):
   spinner.start()
 
   # copy and optionally extract input files
-  forward = f"{args.output}_in1.fastq"
-  reverse = f"{args.output}_in2.fastq"
+  forward = f"{args.output_prefix}_in1.fastq"
+  reverse = f"{args.output_prefix}_in2.fastq"
 
   try:
     for user_input, target in [(args.forward, forward), (args.reverse, reverse)]:
@@ -205,10 +237,10 @@ def repair_reads(args):
   spinner.start()
   command = [
     "repair.sh",
-    f"in1={args.output}_in1.fastq",
-    f"in2={args.output}_in2.fastq",
-    f"out1={args.output}_repaired1.fastq",
-    f"out2={args.output}_repaired2.fastq",
+    f"in1={args.output_prefix}_in1.fastq",
+    f"in2={args.output_prefix}_in2.fastq",
+    f"out1={args.output_prefix}_repaired1.fastq",
+    f"out2={args.output_prefix}_repaired2.fastq",
     "outs=/dev/null"
   ]
   proc = subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -227,13 +259,13 @@ def overrepresented(args):
   spinner = Halo(text="Extracting overrepresented sequences", spinner=spin)
   spinner.start()
 
-  output_dir = os.path.dirname(args.output)
+  output_dir = os.path.dirname(args.output_prefix)
 
   command = [
     "fastqc",
-    f"{args.output}_repaired1.fastq",
+    f"{args.output_prefix}_repaired1.fastq",
     "--extract",
-    "--delete"
+    "--delete",
     "-o",
     output_dir
   ]
@@ -249,9 +281,9 @@ def overrepresented(args):
 
   command = [
     "fastqc",
-    f"{args.output}_repaired2.fastq",
+    f"{args.output_prefix}_repaired2.fastq",
     "--extract",
-    "--delete"
+    "--delete",
     "-o",
     output_dir
   ]
@@ -266,7 +298,7 @@ def overrepresented(args):
     sys.exit()
 
   command = """
-    for f in """ + args.output + """_repaired1_fastqc/fastqc_data.txt; do
+    for f in """ + args.output_prefix + """_repaired1_fastqc/fastqc_data.txt; do
         echo $f `grep -A100 ">>Overrepresented sequences" $f | \
         grep -m1 -B100 ">>END_MODULE" | \
         grep -P "Adapter|PCR" | awk '{print ">overrepresented_sequences" "_" ++c "/1" $1}'` | \
@@ -274,9 +306,9 @@ def overrepresented(args):
         awk '{gsub(/>/,"\n>")}1' | \
         awk '{gsub(/fastqc_data.txt/,"")}1' | \
         awk 'NF > 0';
-    done > """ + args.output + """_adapter1.txt
+    done > """ + args.output_prefix + """_adapter1.txt
 
-    for f in """ + args.output + """_repaired2_fastqc/fastqc_data.txt; do
+    for f in """ + args.output_prefix + """_repaired2_fastqc/fastqc_data.txt; do
         echo $f `grep -A100 ">>Overrepresented sequences" $f | \
         grep -m1 -B100 ">>END_MODULE" | \
         grep -P "Adapter|PCR" | awk '{print ">overrepresented_sequences" "_" ++c "/1" $1}'` | \
@@ -284,7 +316,7 @@ def overrepresented(args):
         awk '{gsub(/>/,"\n>")}1' | \
         awk '{gsub(/fastqc_data.txt/,"")}1' | \
         awk 'NF > 0';
-    done > """ + args.output + """_adapter2.txt
+    done > """ + args.output_prefix + """_adapter2.txt
   """
 
   proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -316,19 +348,19 @@ def human(args):
   spinner = Halo(text="Removing human reads", spinner=spin)
   spinner.start()
 
-  command = f"bowtie2 -p {args.num_threads} -x {os.path.join(utils.DEFAULT_DB_FOLDER, 'GRCh38_noalt_as/GRCh38_noalt_as')} -1 {args.output}_repaired1.fastq -2 {args.output}_repaired2.fastq -S {args.output}_mapped.sam"
+  command = f"bowtie2 -p {args.num_threads} -x {os.path.join(utils.DEFAULT_DB_FOLDER, 'GRCh38_noalt_as/GRCh38_noalt_as')} -1 {args.output_prefix}_repaired1.fastq -2 {args.output_prefix}_repaired2.fastq -S {args.output_prefix}_mapped.sam"
   open_shell(command, spinner)
 
-  command = f"samtools view -bS {args.output}_mapped.sam > {args.output}_mapped.bam"
+  command = f"samtools view -bS {args.output_prefix}_mapped.sam > {args.output_prefix}_mapped.bam"
   open_shell(command, spinner)
 
-  command = f"samtools view -b -f 12 -F 256 {args.output}_mapped.bam > {args.output}_human.bam"
+  command = f"samtools view -b -f 12 -F 256 {args.output_prefix}_mapped.bam > {args.output_prefix}_human.bam"
   open_shell(command, spinner)
 
-  command = f"samtools sort -n {args.output}_human.bam -o {args.output}_human_sorted.bam -@ {args.num_threads}"
+  command = f"samtools sort -n {args.output_prefix}_human.bam -o {args.output_prefix}_human_sorted.bam -@ {args.num_threads}"
   open_shell(command, spinner)
 
-  command = f"bedtools bamtofastq -i {args.output}_human_sorted.bam -fq {args.output}_human1.fastq -fq2 {args.output}_human2.fastq"
+  command = f"bedtools bamtofastq -i {args.output_prefix}_human_sorted.bam -fq {args.output_prefix}_human1.fastq -fq2 {args.output_prefix}_human2.fastq"
   open_shell(command, spinner)
 
   spinner.succeed()
@@ -338,10 +370,10 @@ def trim(args):
   spinner.start()
   
   truseq = os.path.join(utils.DEFAULT_DB_FOLDER, "TruSeq3-PE.fa")
-  open_shell(f"cat {args.output}_adapter1.txt {args.output}_adapter2.txt {truseq} > {args.output}_adapters.txt", spinner)
+  open_shell(f"cat {args.output_prefix}_adapter1.txt {args.output_prefix}_adapter2.txt {truseq} > {args.output_prefix}_adapters.txt", spinner)
 
-  command = f"trimmomatic PE -threads {args.num_threads} {args.output}_human1.fastq {args.output}_human2.fastq "
-  command += f"-baseout {args.output}_QC.fastq.gz ILLUMINACLIP:{args.output}_adapters.txt:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:60"
+  command = f"trimmomatic PE -threads {args.num_threads} {args.output_prefix}_human1.fastq {args.output_prefix}_human2.fastq "
+  command += f"-baseout {args.output_prefix}_QC.fastq.gz ILLUMINACLIP:{args.output_prefix}_adapters.txt:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:60"
   open_shell(command, spinner)
 
   spinner.succeed()
@@ -370,17 +402,17 @@ def profile(args):
 
   command = [
     "metaphlan",
-    f"{args.output}_QC_1P.fastq.gz,{args.output}_QC_2P.fastq.gz",
+    f"{args.output_prefix}_QC_1P.fastq.gz,{args.output_prefix}_QC_2P.fastq.gz",
     "--index", 
     "mpa_v30_CHOCOPhlAn_201901",
-    "--bowtie2out",
-    "bowtie2out.bowtie2.bz2",
+    "--force",
+    "--no_map",
     "--nproc",
     str(args.num_threads),
     "--input_type",
     "fastq",
     "-o",
-    args.output + "_metaphlan.txt",
+    args.output_prefix + "_metaphlan.txt",
     "--add_viruses",
     "--unknown_estimation",
   ]
@@ -428,7 +460,7 @@ def microbiome_analysis(args):
 
 def compute_gmwi2(args):
     # load in taxonomic profile
-    df = pd.read_csv(args.output + "_metaphlan.txt", sep="\t", skiprows=3, usecols=[0, 2], index_col=0).T
+    df = pd.read_csv(args.output_prefix + "_metaphlan.txt", sep="\t", skiprows=3, usecols=[0, 2], index_col=0).T
 
     # load model
     gmwi2 = load(os.path.join(utils.DEFAULT_DB_FOLDER, "GMWI2_model.joblib"))
@@ -448,7 +480,7 @@ def compute_gmwi2(args):
     score = gmwi2.decision_function(df > presence_cutoff)[0]
 
     # write results to file
-    with open(args.output + "_GMWI2.txt", "w") as f:
+    with open(args.output_prefix + "_GMWI2.txt", "w") as f:
       f.write(f"{score}\n")
     
     # Record relative taxa that are present and have nonzero coef in model
@@ -458,22 +490,41 @@ def compute_gmwi2(args):
     coefficient_df.index.name = "taxa_name"
     coefficient_df = coefficient_df[["coefficient"]]
 
-    coefficient_df.to_csv(args.output + "_GMWI2_taxa.txt", sep="\t")
+    coefficient_df.to_csv(args.output_prefix + "_GMWI2_taxa.txt", sep="\t")
 
 def cleanup(args):
   intermediate = [
-
+    "QC_1P.fastq.gz",
+    "QC_1U.fastq.gz",
+    "QC_2P.fastq.gz",
+    "QC_2U.fastq.gz",
+    "adapter1.txt",
+    "adapter2.txt",
+    "adapters.txt",
+    "human.bam",
+    "human1.fastq",
+    "human2.fastq",
+    "human_sorted.bam",
+    "in1.fastq",
+    "in2.fastq",
+    "mapped.bam",
+    "mapped.sam",
+    "repaired1.fastq",
+    "repaired1_fastqc",
+    "repaired1_fastqc.html",
+    "repaired2.fastq",
+    "repaired2_fastqc",
+    "repaired2_fastqc.html",
   ]
 
-  def rm_r(path):
-    if os.path.isdir(path) and not os.path.islink(path):
-        shutil.rmtree(path)
-    elif os.path.exists(path):
-        os.remove(path)
+  intermediate = [f"{args.output_prefix}_{i}" for i in intermediate]
 
   for f in intermediate:
+    # don't accidentally delete input files! 
+    # For the case where an intermediate file has the same name as an input file
     if f == args.forward or f == args.reverse:
       continue
+
     rm_r(f)
 
 def run(args):

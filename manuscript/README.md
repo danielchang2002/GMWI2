@@ -22,11 +22,11 @@ ls
 └── in2.fastq
 
 # Install/update softwares
-"bbmap (repair.sh)": "38.93"
-"fastqc": "0.11.9"
+"bbmap (repair.sh)": "38.90"
+"fastqc": "0.11.8"
 "bowtie2": "2.4.4"
-"samtools": "0.1.19"
-"bedtools": "2.30.0"
+"samtools": "1.9"
+"bedtools": "2.27.1"
 "trimmomatic": "0.39"
 "metaphlan": "3.0.13"
 
@@ -56,8 +56,8 @@ repair.sh in1=in1.fastq in2=in2.fastq out1=repaired1.fastq out2=repaired2.fastq 
 ```bash
 fastqc repaired1.fastq
 fastqc repaired2.fastq
-unzip repaired1_fastq.zip
-unzip repaired2_fastq.zip
+unzip repaired1_fastqc.zip
+unzip repaired2_fastqc.zip
 ```
 
 4. Extract overrepresented sequences (probable adapter sequences) from FastQC outputs
@@ -90,7 +90,7 @@ samtools view -bS mapped.sam > mapped.bam
 
 samtools view -b -f 12 -F 256 mapped.bam > human.bam
 
-samtools sort -n human.bam human_sorted -@ $N_JOBS
+samtools sort -n human.bam human_sorted.bam -@ $N_JOBS
 
 bedtools bamtofastq -i human_sorted.bam -fq human1.fastq -fq2 human2.fastq
 ```

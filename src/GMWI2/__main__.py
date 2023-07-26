@@ -55,7 +55,7 @@ def main():
         "-r", "--reverse", required=True, help="reverse-read of metagenome (.fastq/.fastq.gz)", type=str
     )
     requiredNamed.add_argument(
-        "-o", "--output", required=True, help="prefix to designate output file names", type=str
+        "-o", "--output_prefix", required=True, help="prefix to designate output file names", type=str
     )
 
     parser.add_argument("-v", '--version', action='version', version=f"GMWI2 version {__version__}")
@@ -70,7 +70,7 @@ def main():
         print("input file(s) do not exist")
         return
 
-    if not os.path.dirname(args.output) == "" and not os.path.exists(os.path.dirname(args.output)):
+    if not os.path.dirname(args.output_prefix) == "" and not os.path.exists(os.path.dirname(args.output_prefix)):
         print("output prefix is invalid")
 
     # check forward file
