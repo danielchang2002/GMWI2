@@ -41,7 +41,7 @@ conda activate gmwi2_env
 
 3. Install GMWI2 package with mamba
 ```bash
-mamba install -c danielchang2002 -c bioconda -c conda-forge gmwi2=1.4
+mamba install -c bioconda gmwi2=1.4
 ```
 
 ### Usage
