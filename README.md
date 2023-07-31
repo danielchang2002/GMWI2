@@ -52,7 +52,7 @@ Try downloading and running GMWI2 on an [example stool metagenome](./example).
 Input: Two (forward/reverse) raw fastq (or fastq.gz) files generated from paired-end stool metagenome reads
 Output: The GMWI2 (Gut Microbiome Wellness Index 2) score
 
-usage: gmwi2 [-h] -n NUM_THREADS -i INPUT -o OUTPUT [-v]
+usage: gmwi2 [-h] -n NUM_THREADS -f FORWARD -r REVERSE -o OUTPUT_PREFIX [-v]
 
 * Example usage:
 
@@ -61,7 +61,7 @@ $ ls
 ├── forward.fastq
 └── reverse.fastq
 
-$ gmwi2 -i forward.fastq,reverse.fastq -n 8 -o output_prefix
+$ gmwi2 -f forward.fastq -r reverse.fastq -n 8 -o output_prefix
 
 $ ls
 .
@@ -83,9 +83,11 @@ optional arguments:
 required named arguments:
   -n NUM_THREADS, --num_threads NUM_THREADS
                         number of threads
-  -i INPUT, --input INPUT
-                        metagenome (.fastq) file(s)
-  -o OUTPUT, --output OUTPUT
+  -f FORWARD, --forward FORWARD
+                        forward-read of metagenome (.fastq/.fastq.gz)
+  -r REVERSE, --reverse REVERSE
+                        reverse-read of metagenome (.fastq/.fastq.gz)
+  -o OUTPUT_PREFIX, --output_prefix OUTPUT_PREFIX
                         prefix to designate output file names
 ```
 
