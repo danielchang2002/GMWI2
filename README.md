@@ -93,7 +93,7 @@ required named arguments:
 During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed. 
 This may take some time (around 20 minutes).
 
-If using GMWI2 on a computing cluster, **please avoid submitting multiple batch jobs the first time you run this tool** to avoid the concurrent jobs from overwriting each others' download progresses.
+If using GMWI2 on a computing cluster, **⚠️ please avoid submitting multiple batch jobs the first time you run this tool ⚠️** to avoid the concurrent jobs from overwriting each others' download progresses.
 
 ### Reproducing manuscript results
 
