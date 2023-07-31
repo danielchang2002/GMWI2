@@ -89,11 +89,15 @@ required named arguments:
                         prefix to designate output file names
 ```
 
-### Database installation note
-During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed. 
+### A note on database installation and multiple concurrent batch jobs
+During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed to your python site-packages directories. 
 This may take some time (around 20 minutes).
 
-If using GMWI2 on a computing cluster, **⚠️ please avoid submitting multiple batch jobs the first time you run this tool ⚠️** to avoid the concurrent jobs from overwriting each others' download progresses.
+If using GMWI2 on an HPC cluster, **⚠️ please avoid submitting multiple concurrent batch jobs the first time you run this tool ⚠️** to avoid the confusion of concurrent jobs overwriting each others' download progresses.
+
+Although if you do happen to submit multiple concurrent batch jobs the first time you run, you should notice that all jobs but one abort during the database installation stage, and the remaining unaborted job will download databases correctly, and all is good, yay!
+
+After the first run of GMWI2, all databases should be downloaded and installed, subsequent runs will be able to use the cached databases, and you may submit as many concurrent batch jobs as your heart desires.
 
 ### Reproducing manuscript results
 
