@@ -48,11 +48,6 @@ mamba install -c bioconda gmwi2=1.5
 
 Try downloading and running GMWI2 on an [example stool metagenome](./example).
 
-Note: during the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed. 
-This may take some time (around 20 minutes).
-If using GMWI2 on a computing cluster, please avoid submitting multiple batch jobs the first time you run this tool to avoid the concurrent jobs from overwriting each others' download progresses.
-
-
 ```bash
 Input: Two (forward/reverse) raw fastq (or fastq.gz) files generated from paired-end stool metagenome reads
 Output: The GMWI2 (Gut Microbiome Wellness Index 2) score
@@ -93,6 +88,12 @@ required named arguments:
   -o OUTPUT, --output OUTPUT
                         prefix to designate output file names
 ```
+
+### Database installation note
+During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed. 
+This may take some time (around 20 minutes).
+
+If using GMWI2 on a computing cluster, **please avoid submitting multiple batch jobs the first time you run this tool** to avoid the concurrent jobs from overwriting each others' download progresses.
 
 ### Reproducing manuscript results
 
