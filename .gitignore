@@ -3,6 +3,8 @@
 .DS_Store
 *.fastq
 *.fastq.gz
+!tiny_1.fastq
+!tiny_2.fastq
 *.sra
 
 # extraneous notebooks
