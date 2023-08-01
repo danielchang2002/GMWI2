@@ -13,9 +13,9 @@ GMWI2 (Gut Microbiome Wellness Index 2) is a robust and biologically interpretab
 On a stool metagenome sample, this command-line tool performs four major steps:
 1. Quality control
    1. Removal of overrepresented sequences (probable adapter sequences) using [fastqc](https://github.com/s-andrews/FastQC)
-   2. Removal of human DNA contaminants (reads that map to GRCh38/hg38) using [Bowtie 2](https://github.com/BenLangmead/bowtie2)
+   2. Removal of human DNA contaminants (reads that map to GRCh38/hg38) using [Bowtie2](https://github.com/BenLangmead/bowtie2)
    3. Removal of adapter sequences and low quality reads using [Trimmomatic](https://github.com/timflutre/trimmomatic)
-2. Taxonomic profiling using MetaPhlAn3 (v3.0.13) with the mpa_v30_CHOCOPhlAn_201901 marker database
+2. Taxonomic profiling using [MetaPhlAn3](https://github.com/biobakery/MetaPhlAn) (v3.0.13) with the mpa_v30_CHOCOPhlAn_201901 marker database
 3. Transformation of taxonomic relative abundances into a binary presence/absence profile
 4. Computation of the GMWI2 score using a Lasso-penalized logistic regression model trained on a meta-dataset of 8,069 health status labeled stool shotgun metagenomes
 
@@ -25,9 +25,9 @@ TODO
 
 ### Installation
 
-To avoid dependency conflicts, please create an isolated conda environment and 
-install the GMWI2 package. Installation via conda/mamba automatically installs GMWI2 and 
-its dependencies (MetaPhlAn3).
+To avoid dependency conflicts, please create an isolated conda environment and install the GMWI2 package. Installation via conda/mamba automatically installs GMWI2 and 
+its dependencies.
+Make sure to perform step 4 to ensure that databases are downloaded and installed!
 
 1. Create new conda environment and install mamba
 ```bash
@@ -44,9 +44,18 @@ conda activate gmwi2_env
 mamba install -c bioconda -c conda-forge gmwi2=1.5
 ```
 
+4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome
+```bash
+# download the tiny stool metagenome
+wget https://raw.githubusercontent.com/danielchang2002/GMWI2/main/example/tiny/tiny_1.fastq
+wget https://raw.githubusercontent.com/danielchang2002/GMWI2/main/example/tiny/tiny_2.fastq
+
+gmwi2 -f tiny_1.fastq -r tiny_2.fastq -n 16 -o tiny
+```
+
 ### Usage
 
-Try downloading and running GMWI2 on an [example stool metagenome](./example).
+Try downloading and running GMWI2 on a real [example stool metagenome](./example) from the pooled dataset used to develop GMWI2.
 
 ```bash
 Input: Two (forward/reverse) raw fastq (or fastq.gz) files generated from paired-end stool metagenome reads
@@ -92,7 +101,7 @@ required named arguments:
 ```
 
 ### A note on database installation and multiple concurrent batch jobs
-During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed to your python site-packages directories. 
+During the first time you run this tool, MetaPhlAn databases and the bowtie2 human genome index will be downloaded and installed to your python site-packages directories (step 4 of the installation instructions). 
 This may take some time (around 20 minutes).
 
 If using GMWI2 on an HPC cluster, **⚠️ please avoid submitting multiple concurrent batch jobs the first time you run this tool ⚠️** to avoid the confusion of concurrent jobs overwriting each others' download progresses.
