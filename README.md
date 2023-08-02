@@ -103,7 +103,7 @@ required named arguments:
 To merge GMWI2 score output files from multiple samples into a single csv file, please run:
 
 ```bash
-echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename "$file" | sed 's/.\{10\}$//'),$(cat "$file")" >> merged.csv; done
+echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename "$file" | awk -F "_GMWI2.txt" '{print $1}'),$(cat "$file")" >> merged.csv; done
 ```
 
 ### Reproducing manuscript results
