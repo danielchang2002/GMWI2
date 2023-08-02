@@ -44,7 +44,7 @@ conda activate gmwi2_env
 mamba install -c bioconda -c conda-forge gmwi2=1.5
 ```
 
-4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome
+4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome. This tool automatically installs databases during the first run (should take ~20 minutes).
 ```bash
 # download the tiny stool metagenome
 wget https://raw.githubusercontent.com/danielchang2002/GMWI2/main/example/tiny/tiny_1.fastq
@@ -98,6 +98,12 @@ required named arguments:
                         reverse-read of metagenome (.fastq/.fastq.gz)
   -o OUTPUT_PREFIX, --output_prefix OUTPUT_PREFIX
                         prefix to designate output file names
+```
+
+To merge GMWI2 score output files from multiple samples into a single csv file, please run:
+
+```bash
+echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename "$file" | sed 's/.\{10\}$//'),$(cat "$file")" >> merged.csv; done
 ```
 
 ### Reproducing manuscript results

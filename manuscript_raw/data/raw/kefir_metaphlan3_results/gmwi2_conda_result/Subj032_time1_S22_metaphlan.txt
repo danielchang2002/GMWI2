@@ -1,0 +1,40 @@
+#mpa_v30_CHOCOPhlAn_201901
+#/research/labs/surgresearch/jsung/m184679/tools/miniconda2/envs/gmwi2_env/bin/metaphlan Subj032_time1_S22_QC_1P.fastq.gz,Subj032_time1_S22_QC_2P.fastq.gz --index mpa_v30_CHOCOPhlAn_201901 --force --no_map --nproc 10 --input_type fastq -o Subj032_time1_S22_metaphlan.txt --add_viruses --unknown_estimation
+#SampleID	Metaphlan_Analysis
+#clade_name	NCBI_tax_id	relative_abundance	additional_species
+UNKNOWN	-1	18.35641	
+k__Viruses	10239	64.8658680188718	
+k__Bacteria	2	10.563113494941032	
+k__Eukaryota	2759	6.214612396110686	
+k__Viruses|p__Viruses_unclassified	10239|	64.8658680188718	
+k__Bacteria|p__Firmicutes	2|1239	10.563113494941032	
+k__Eukaryota|p__Ascomycota	2759|4890	6.214612396110686	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified	10239||	64.8658680188718	
+k__Bacteria|p__Firmicutes|c__Bacilli	2|1239|91061	10.563113494941032	
+k__Eukaryota|p__Ascomycota|c__Saccharomycetes	2759|4890|4891	6.214612396110686	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales	2|1239|91061|186826	10.563113494941032	
+k__Eukaryota|p__Ascomycota|c__Saccharomycetes|o__Saccharomycetales	2759|4890|4891|4892	6.214612396110686	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae	10239|||28883|10699	64.8658680188718	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae	2|1239|91061|186826|1300	9.803174922827464	
+k__Eukaryota|p__Ascomycota|c__Saccharomycetes|o__Saccharomycetales|f__Debaryomycetaceae	2759|4890|4891|4892|766764	6.214612396110686	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae	2|1239|91061|186826|33958	0.4427042236171693	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae	2|1239|91061|186826|81852	0.3172343484963988	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Sk1virus	10239|||28883|10699|1623305	58.99028064647207	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Streptococcus	2|1239|91061|186826|1300|1301	9.712762806931615	
+k__Eukaryota|p__Ascomycota|c__Saccharomycetes|o__Saccharomycetales|f__Debaryomycetaceae|g__Candida	2759|4890|4891|4892|766764|1535326	6.214612396110686	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Siphoviridae_unclassified	10239|||28883|10699|	5.875579208040338	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus	2|1239|91061|186826|33958|1578	0.4427042236171693	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae|g__Enterococcus	2|1239|91061|186826|81852|1350	0.3172343484963988	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Lactococcus	2|1239|91061|186826|1300|1357	0.09041211589584931	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Sk1virus|s__Lactococcus_phage_jm3	10239|||28883|10699|1623305|1262536	58.99028064647207	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Streptococcus|s__Streptococcus_thermophilus	2|1239|91061|186826|1300|1301|1308	9.712762806931615	k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Streptococcus|s__Streptococcus_thermophilus_CAG_236
+k__Eukaryota|p__Ascomycota|c__Saccharomycetes|o__Saccharomycetales|f__Debaryomycetaceae|g__Candida|s__Candida_albicans	2759|4890|4891|4892|766764|1535326|5476	6.214612396110686	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Siphoviridae_unclassified|s__Lactobacillus_phage_A2	10239|||28883|10699||51369	3.2776963785453535	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Siphoviridae_unclassified|s__Lactobacillus_phage_J1	10239|||28883|10699||29273	2.0079507129800502	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Siphoviridae_unclassified|s__Lactobacillus_phage_Lrm1	10239|||28883|10699||496874	0.5864214419768076	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae|g__Enterococcus|s__Enterococcus_faecalis	2|1239|91061|186826|81852|1350|1351	0.3172343484963988	k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae|g__Enterococcus|s__Enterococcus_sp_HMSC078F03,k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Enterococcaceae|g__Enterococcus|s__Enterococcus_sp_HMSC073E09
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus|s__Lactobacillus_delbrueckii	2|1239|91061|186826|33958|1578|1584	0.24236717288099896	k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus|s__Lactobacillus_sp_HMSC08B12
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus|s__Lactobacillus_helveticus	2|1239|91061|186826|33958|1578|1587	0.19783875676252669	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Lactococcus|s__Lactococcus_lactis	2|1239|91061|186826|1300|1357|1358	0.09041211589584931	
+k__Viruses|p__Viruses_unclassified|c__Viruses_unclassified|o__Caudovirales|f__Siphoviridae|g__Siphoviridae_unclassified|s__Lactococcus_phage_P087	10239|||28883|10699||641487	0.0035106745381267112	
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Lactobacillaceae|g__Lactobacillus|s__Lactobacillus_acidophilus	2|1239|91061|186826|33958|1578|1579	0.0024982939736436596	

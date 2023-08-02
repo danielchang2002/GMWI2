@@ -1,0 +1,2 @@
+taxa_name	coefficient
+k__Bacteria|p__Firmicutes|c__Bacilli|o__Lactobacillales|f__Streptococcaceae|g__Streptococcus|s__Streptococcus_thermophilus	0.046697530898725984
