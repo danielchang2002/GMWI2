@@ -1,5 +1,7 @@
 # Raw code notebooks
 
+![panda](../images/panda.gif)
+
 This directory contains raw code notebooks used for the GMWI2 analysis. 
 
 ### Warning
