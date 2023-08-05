@@ -1,5 +1,5 @@
 # GMWI2: Gut Microbiome Wellness Index 2
-![poop on a chip](./poop.png)
+![poop on a chip](./images/poop.png)
 
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/version.svg)](https://anaconda.org/bioconda/gmwi2)
 [![Anaconda-Server Badge](https://anaconda.org/bioconda/gmwi2/badges/platforms.svg)](https://anaconda.org/bioconda/gmwi2)
@@ -44,7 +44,7 @@ conda activate gmwi2_env
 mamba install -c bioconda -c conda-forge gmwi2=1.5
 ```
 
-4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome. This tool automatically installs databases during the first run (should take ~20 minutes).
+4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome. This tool automatically installs databases during the first run (should take ~20 minutes). To avoid issues in downloading databases, please run this step before submitting multiple concurrent batch jobs.
 ```bash
 # download the tiny stool metagenome
 wget https://raw.githubusercontent.com/danielchang2002/GMWI2/main/example/tiny/tiny_1.fastq
@@ -109,6 +109,7 @@ echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename 
 ### Reproducing manuscript results
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danielchang2002/GMWI2/blob/main/manuscript/GMWI2_manuscript.ipynb)
+![colab](./images/colab_screenshot.png)
 
 Please use the colab notebook linked above to reproduce all downstream analyses on the pooled dataset. 
 See the [manuscript directory](./manuscript) for more details.
