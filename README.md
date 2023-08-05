@@ -110,7 +110,7 @@ echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename 
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danielchang2002/GMWI2/blob/main/manuscript/GMWI2_manuscript.ipynb)
 
-![colab](./images/colab_screenshot.png)
+![colab](./images/colab_screenshot2.png)
 
 Please use the colab notebook linked above to reproduce all downstream analyses on the pooled dataset. 
 See the [manuscript directory](./manuscript) for more details.
