@@ -23,11 +23,17 @@ If you use GMWI2, please cite:
 
 TODO
 
+### System requirements
+GMWI2 is supported for macOS and Linux, and has been tested on the following systems:
+- macOS Big Sur 11.7.10
+- CentOS Linux 7 (Core)
+
 ### Installation
 
 To avoid dependency conflicts, please create an isolated conda environment and install the GMWI2 package. Installation via conda/mamba automatically installs GMWI2 and 
 its dependencies.
 Make sure to perform step 4 to ensure that databases are downloaded and installed!
+Installation should take ~30 minutes.
 
 1. Create new conda environment and install mamba
 ```bash
@@ -55,7 +61,7 @@ gmwi2 -f tiny_1.fastq -r tiny_2.fastq -n 16 -o tiny
 
 ### Usage
 
-Try downloading and running GMWI2 on a real [example stool metagenome](./example) from the pooled dataset used to develop GMWI2.
+Try downloading and running GMWI2 on a real [example stool metagenome](./example) from the pooled dataset used to develop GMWI2 (should take ~20 minutes).
 
 ```bash
 Input: Two (forward/reverse) raw fastq (or fastq.gz) files generated from paired-end stool metagenome reads
