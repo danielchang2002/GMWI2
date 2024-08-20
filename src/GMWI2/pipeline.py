@@ -255,6 +255,10 @@ def repair_reads(args):
 
   spinner.succeed()
 
+  # remove input
+  rm_r(f"{args.output_prefix}_in1.fastq")
+  rm_r(f"{args.output_prefix}_in2.fastq")
+
 def overrepresented(args):
   spinner = Halo(text="Extracting overrepresented sequences", spinner=spin)
   spinner.start()
@@ -332,6 +336,18 @@ def overrepresented(args):
 
   spinner.succeed()
 
+  intermediate = [
+    "repaired1_fastqc",
+    "repaired1_fastqc.html",
+    "repaired2_fastqc",
+    "repaired2_fastqc.html",
+  ]
+
+  intermediate = [f"{args.output_prefix}_{i}" for i in intermediate]
+
+  for f in intermediate:
+    rm_r(f)
+
 def open_shell(command, spinner):
   proc = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
@@ -348,20 +364,36 @@ def human(args):
   spinner = Halo(text="Removing human reads", spinner=spin)
   spinner.start()
 
+  # input: repaired1.fastq, repaired2.fastq
+  # output: mapped.sam
   command = f"bowtie2 -p {args.num_threads} -x {os.path.join(utils.DEFAULT_DB_FOLDER, 'GRCh38_noalt_as/GRCh38_noalt_as')} -1 {args.output_prefix}_repaired1.fastq -2 {args.output_prefix}_repaired2.fastq -S {args.output_prefix}_mapped.sam"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_repaired1.fastq")
+  rm_r(f"{args.output_prefix}_repaired2.fastq")
 
+  # input: mapped.sam
+  # output: mapped.bam
   command = f"samtools view -bS {args.output_prefix}_mapped.sam > {args.output_prefix}_mapped.bam"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_mapped.sam")
 
+  # input: mapped.bam
+  # output: human.bam
   command = f"samtools view -b -f 12 -F 256 {args.output_prefix}_mapped.bam > {args.output_prefix}_human.bam"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_mapped.bam")
 
+  # input: human.bam
+  # output: human_sorted.bam
   command = f"samtools sort -n {args.output_prefix}_human.bam -o {args.output_prefix}_human_sorted.bam -@ {args.num_threads}"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_human.bam")
 
+  # input: human_sorted.bam
+  # output: human1.fastq, human2.fastq
   command = f"bedtools bamtofastq -i {args.output_prefix}_human_sorted.bam -fq {args.output_prefix}_human1.fastq -fq2 {args.output_prefix}_human2.fastq"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_human_sorted.bam")
 
   spinner.succeed()
 
@@ -369,14 +401,26 @@ def trim(args):
   spinner = Halo(text="Removing adapters and low quality reads", spinner=spin)
   spinner.start()
   
+  # input: adapter1.txt, adapter2.txt
+  # output: adapters.txt
   truseq = os.path.join(utils.DEFAULT_DB_FOLDER, "TruSeq3-PE.fa")
   open_shell(f"cat {args.output_prefix}_adapter1.txt {args.output_prefix}_adapter2.txt {truseq} > {args.output_prefix}_adapters.txt", spinner)
+  rm_r(f"{args.output_prefix}_adapter1.txt")
+  rm_r(f"{args.output_prefix}_adapter2.txt")
 
+  # input: adapters.txt, human1.fastq, human2.fastq
+  # output: QC_xx.fastq.gz, 
   command = f"trimmomatic PE -threads {args.num_threads} {args.output_prefix}_human1.fastq {args.output_prefix}_human2.fastq "
   command += f"-baseout {args.output_prefix}_QC.fastq.gz ILLUMINACLIP:{args.output_prefix}_adapters.txt:2:30:10:2:keepBothReads LEADING:3 TRAILING:3 MINLEN:60"
   open_shell(command, spinner)
+  rm_r(f"{args.output_prefix}_adapters.txt")
+  rm_r(f"{args.output_prefix}_human1.fastq")
+  rm_r(f"{args.output_prefix}_human2.fastq")
 
   spinner.succeed()
+
+  rm_r(f"{args.output_prefix}_QC_1U.fastq.gz")
+  rm_r(f"{args.output_prefix}_QC_2U.fastq.gz")
 
 def quality_control(args):
   print(
@@ -427,6 +471,9 @@ def profile(args):
     printw(stderr)
     printr("GMWI2 aborted " + poop)
     sys.exit()
+
+  rm_r(f"{args.output_prefix}_QC_1P.fastq.gz")
+  rm_r(f"{args.output_prefix}_QC_2P.fastq.gz")
 
 def microbiome_analysis(args):
   print(
@@ -494,27 +541,27 @@ def compute_gmwi2(args):
 
 def cleanup(args):
   intermediate = [
-    "QC_1P.fastq.gz",
-    "QC_1U.fastq.gz",
-    "QC_2P.fastq.gz",
-    "QC_2U.fastq.gz",
-    "adapter1.txt",
-    "adapter2.txt",
-    "adapters.txt",
-    "human.bam",
-    "human1.fastq",
-    "human2.fastq",
-    "human_sorted.bam",
-    "in1.fastq",
-    "in2.fastq",
-    "mapped.bam",
-    "mapped.sam",
-    "repaired1.fastq",
-    "repaired1_fastqc",
-    "repaired1_fastqc.html",
-    "repaired2.fastq",
-    "repaired2_fastqc",
-    "repaired2_fastqc.html",
+    # "QC_1P.fastq.gz",
+    # "QC_1U.fastq.gz",
+    # "QC_2P.fastq.gz",
+    # "QC_2U.fastq.gz",
+    # "adapter1.txt",
+    # "adapter2.txt",
+    # "adapters.txt",
+    # "human.bam",
+    # "human1.fastq",
+    # "human2.fastq",
+    # "human_sorted.bam",
+    # "in1.fastq",
+    # "in2.fastq",
+    # "mapped.bam",
+    # "mapped.sam",
+    # "repaired1.fastq",
+    # "repaired1_fastqc",
+    # "repaired1_fastqc.html",
+    # "repaired2.fastq",
+    # "repaired2_fastqc",
+    # "repaired2_fastqc.html",
   ]
 
   intermediate = [f"{args.output_prefix}_{i}" for i in intermediate]
@@ -532,6 +579,6 @@ def run(args):
   database_installation()
   quality_control(args)
   microbiome_analysis(args)
-  cleanup(args)
+  # cleanup(args)
 
   printg("GMWI2 great success!" + poop + party1 + party2)
