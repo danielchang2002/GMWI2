@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="GMWI2-package",
-    version="1.5",
+    version="1.6",
     author="Daniel Chang",
     author_email="danielchang2002@gmail.com",
     description="GMWI2 (Gut Microbiome Wellness Index 2)",
