@@ -21,7 +21,7 @@ On a stool metagenome sample, this command-line tool performs four major steps:
 
 If you use GMWI2, please cite:
 
-[Gut Microbiome Wellness Index 2 Enhances Health Status Prediction from Gut Microbiome Taxonomic Profiles](https://doi.org/10.1101/2023.09.30.560294)
+[Gut Microbiome Wellness Index 2 Enhances Health Status Prediction from Gut Microbiome Taxonomic Profiles](https://doi.org/10.1038/s41467-024-51651-9)
 Chang and Gupta *et al.*, *Nature Communications* (2024).
 
 ### System requirements
