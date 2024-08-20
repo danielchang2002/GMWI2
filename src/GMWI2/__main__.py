@@ -8,7 +8,7 @@ import subprocess
 from argparse import RawTextHelpFormatter
 
 __author__ = "Daniel Chang, Vinod Gupta, Jaeyun Sung"
-__version__ = "1.5"
+__version__ = "1.6"
 
 def main():
     parser = argparse.ArgumentParser(
