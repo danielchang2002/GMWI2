@@ -48,7 +48,7 @@ conda activate gmwi2_env
 
 3. Install GMWI2 package with mamba
 ```bash
-mamba install -c bioconda -c conda-forge gmwi2=1.5
+mamba install -c bioconda -c conda-forge gmwi2=1.6
 ```
 
 4. Download/install databases (and verify that the package was installed correctly) by running GMWI2 on a tiny simulated stool metagenome. This tool automatically installs databases during the first run (should take ~20 minutes). To avoid issues in downloading databases, please run this step before submitting multiple concurrent batch jobs.
