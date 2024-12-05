@@ -113,6 +113,22 @@ To merge GMWI2 score output files from multiple samples into a single csv file, 
 echo "Sample,GMWI2" > merged.csv && for file in *GMWI2.txt; do echo "$(basename "$file" | awk -F "_GMWI2.txt" '{print $1}'),$(cat "$file")" >> merged.csv; done
 ```
 
+### Using MetaPhlAn output files as input (update 12/5/24)
+We highly recommend that you use the conda tool to compute GMWI2 scores, as the tool checks that you use the correct MetaPhlAn version and marker database! 
+
+However, if you have already ran MetaPhlAn on your metagenomes (and are sure that you used the correct MetaPhlAn version and marker database!) and would like to compute GMWI2 scores directly on the MetaPhlAn output files, please run the following:
+
+```bash
+# download script
+wget https://raw.githubusercontent.com/danielchang2002/GMWI2/refs/heads/main/src/gmwi2_metaphlan_output.py
+
+# download linear model
+wget https://raw.githubusercontent.com/danielchang2002/GMWI2/refs/heads/main/src/GMWI2/GMWI2_databases/GMWI2_model.joblib
+
+# run script on MetaPhlAn output
+python3 gmwi2_metaphlan_output.py metagenome_metaphlan_output.txt GMWI2_model.joblib output_prefix
+```
+
 ### Reproducing manuscript results
 
 [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/danielchang2002/GMWI2/blob/main/manuscript/GMWI2_manuscript.ipynb)
