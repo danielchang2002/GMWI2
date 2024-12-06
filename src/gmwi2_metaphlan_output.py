@@ -8,7 +8,7 @@ def main():
 
     taxonomic_profile = sys.argv[1]
     linear_model = sys.argv[2]
-    output_prefix = sys.argv[1]
+    output_prefix = sys.argv[3]
 
     # load in taxonomic profile
     df = pd.read_csv(taxonomic_profile, sep="\t", skiprows=3, usecols=[0, 2], index_col=0).T
